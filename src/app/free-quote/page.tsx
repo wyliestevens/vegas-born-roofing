@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import Image from 'next/image';
 import Link from 'next/link';
 
 export const metadata: Metadata = {
@@ -14,9 +15,19 @@ export const metadata: Metadata = {
 export default function FreeQuote() {
   return (
     <>
-      {/* Hero */}
-      <section className="bg-[#111827] py-20">
-        <div className="max-w-7xl mx-auto px-4 text-center">
+      {/* Hero with image */}
+      <section className="relative bg-[#111827] py-20 overflow-hidden">
+        <div className="absolute inset-0">
+          <Image
+            src="/images/free-quote-hero.png"
+            alt="Vegas Born Roofing team ready for your free quote"
+            fill
+            className="object-cover opacity-25"
+            priority
+          />
+          <div className="absolute inset-0 bg-gradient-to-r from-[#111827] via-[#111827]/80 to-transparent" />
+        </div>
+        <div className="relative max-w-7xl mx-auto px-4 text-center">
           <h1 className="text-4xl md:text-5xl font-bold text-white mb-4">Get a Free Quote</h1>
           <p className="text-gray-400 text-lg max-w-2xl mx-auto">
             We proudly serve Las Vegas, Henderson, Summerlin, North Las Vegas, Boulder City, Pahrump,
