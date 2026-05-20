@@ -2,6 +2,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import ReviewsCarousel from '@/components/ReviewsCarousel';
 import FAQ from '@/components/FAQ';
+import LeadForm from '@/components/LeadForm';
 
 const services = [
   {
@@ -71,33 +72,65 @@ export default function Home() {
           <div className="absolute inset-0 bg-gradient-to-r from-[#111827] via-[#111827]/80 to-transparent" />
         </div>
 
-        <div className="relative max-w-7xl mx-auto px-4 py-28 md:py-40">
-          <div className="max-w-3xl">
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-tight mb-6">
-              Commercial &amp; Residential{' '}
-              <span className="text-[#d4a843]">Roofing Experts</span>{' '}
-              Serving Las Vegas &amp; Nearby Areas
-            </h1>
-            <p className="text-xl text-gray-300 mb-8 max-w-2xl">
-              Licensed in Nevada, Utah &amp; Arizona. Trusted by general contractors, property managers,
-              and homeowners since 2018.
-            </p>
-            <div className="flex flex-wrap gap-4">
-              <a
-                href="tel:7028762630"
-                className="inline-flex items-center bg-[#b91c1c] text-white px-8 py-4 rounded-lg text-lg font-bold hover:bg-[#991b1b] transition-colors shadow-lg"
-              >
-                <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
-                </svg>
-                Call (702) 876-2630
-              </a>
-              <Link
-                href="/free-quote"
-                className="inline-flex items-center bg-[#d4a843] text-[#111827] px-8 py-4 rounded-lg text-lg font-bold hover:bg-[#c49a3a] transition-colors shadow-lg"
-              >
-                Get a Free Quote
-              </Link>
+        <div className="relative max-w-7xl mx-auto px-4 py-20 md:py-28">
+          <div className="grid md:grid-cols-2 gap-12 items-center">
+            <div>
+              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-tight mb-6">
+                Commercial &amp; Residential{' '}
+                <span className="text-[#d4a843]">Roofing Experts</span>{' '}
+                Serving Las Vegas &amp; Nearby Areas
+              </h1>
+              <p className="text-xl text-gray-300 mb-8 max-w-2xl">
+                Licensed in Nevada, Utah &amp; Arizona. Trusted by general contractors, property managers,
+                and homeowners since 2018.
+              </p>
+              <div className="flex flex-wrap gap-4">
+                <a
+                  href="tel:7028762630"
+                  className="inline-flex items-center bg-[#b91c1c] text-white px-8 py-4 rounded-lg text-lg font-bold hover:bg-[#991b1b] transition-colors shadow-lg"
+                >
+                  <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+                  </svg>
+                  Call (702) 876-2630
+                </a>
+                <Link
+                  href="/free-quote"
+                  className="inline-flex items-center bg-[#d4a843] text-[#111827] px-8 py-4 rounded-lg text-lg font-bold hover:bg-[#c49a3a] transition-colors shadow-lg"
+                >
+                  Get a Free Quote
+                </Link>
+              </div>
+              {/* 30s callback stat */}
+              <div className="mt-8 flex items-center gap-6">
+                <div className="flex items-center gap-2">
+                  <div className="w-10 h-10 bg-[#d4a843] rounded-full flex items-center justify-center">
+                    <svg className="w-5 h-5 text-[#111827]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
+                    </svg>
+                  </div>
+                  <div>
+                    <p className="text-white font-bold text-lg">30s</p>
+                    <p className="text-gray-400 text-xs">AI Callback</p>
+                  </div>
+                </div>
+                <div className="flex items-center gap-2">
+                  <div className="w-10 h-10 bg-[#d4a843] rounded-full flex items-center justify-center">
+                    <svg className="w-5 h-5 text-[#111827]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+                  </div>
+                  <div>
+                    <p className="text-white font-bold text-lg">Free</p>
+                    <p className="text-gray-400 text-xs">Inspections</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Lead form */}
+            <div>
+              <LeadForm />
             </div>
           </div>
         </div>
