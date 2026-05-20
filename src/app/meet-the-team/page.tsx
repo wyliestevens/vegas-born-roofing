@@ -23,6 +23,7 @@ const teamMembers = [
     name: 'Hector Santiago',
     role: 'Estimator / Project Manager',
     image: '/images/team-hector.png',
+    imagePosition: 'object-top' as const,
     bio: 'With over 20 years of roofing experience, Hector manages customer relationships, crew coordination, and project oversight. Known for his positive attitude and strong work ethic, he ensures every project runs smoothly from start to finish.',
   },
   {
@@ -54,6 +55,7 @@ const teamMembers = [
     name: 'Charlene Garrett',
     role: 'Accounting Controller',
     image: '/images/team-charlene.png',
+    imagePosition: 'object-contain bg-black' as const,
     bio: 'Charlene has been with the company since its inception. She manages accounts receivable and payable, payroll, and employee administration. Her organization and attention to detail keep our operations running seamlessly.',
   },
   {
@@ -157,12 +159,12 @@ export default function MeetTheTeam() {
                 key={member.name}
                 className="bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-shadow border border-gray-100"
               >
-                <div className="relative h-80 overflow-hidden">
+                <div className={`relative h-80 overflow-hidden ${member.imagePosition?.includes('bg-') ? 'bg-black' : ''}`}>
                   <Image
                     src={member.image}
                     alt={`${member.name} - ${member.role} at Vegas Born Roofing LLC`}
                     fill
-                    className="object-cover object-center"
+                    className={`${member.imagePosition?.includes('object-contain') ? 'object-contain p-8' : 'object-cover'} ${member.imagePosition?.includes('object-top') ? 'object-top' : 'object-center'}`}
                     sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                   />
                 </div>
