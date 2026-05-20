@@ -94,14 +94,15 @@ export default function LeadForm() {
             onChange={(e) => setForm({ ...form, issue: e.target.value })}
             className="w-full px-4 py-3 rounded-lg bg-[#111827] border border-gray-600 text-white focus:ring-2 focus:ring-[#b91c1c] focus:border-transparent outline-none transition"
           >
-            <option value="" className="text-gray-500">What do you need help with?</option>
-            <option value="leak">Roof Leak / Emergency Repair</option>
-            <option value="inspection">Free Roof Inspection</option>
-            <option value="re-roof">Full Re-Roof</option>
-            <option value="commercial">Commercial Roofing</option>
-            <option value="coating">Roof Coating</option>
-            <option value="maintenance">Maintenance Program</option>
-            <option value="other">Other</option>
+            <option value="">Select your situation...</option>
+            <option value="I think I have storm damage">I think I have storm damage</option>
+            <option value="Active leak / emergency">Active leak / emergency</option>
+            <option value="Old roof, time to replace">Old roof, time to replace</option>
+            <option value="Just want a free inspection">Just want a free inspection</option>
+            <option value="Commercial property">Commercial property</option>
+            <option value="Property management / HOA">Property management / HOA</option>
+            <option value="Sheet metal work">Sheet metal work</option>
+            <option value="Roof coating">Roof coating</option>
           </select>
         </div>
 
