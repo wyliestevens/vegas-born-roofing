@@ -22,47 +22,56 @@ const teamMembers = [
   {
     name: 'Hector Santiago',
     role: 'Estimator / Project Manager',
+    image: '/images/team-hector.png',
     bio: 'With over 20 years of roofing experience, Hector manages customer relationships, crew coordination, and project oversight. Known for his positive attitude and strong work ethic, he ensures every project runs smoothly from start to finish.',
   },
   {
     name: 'Luis Ordonez',
     role: 'Commercial Superintendent',
+    image: '/images/team-luis.png',
     bio: 'Luis began his roofing career in 1999 and has built extensive experience across residential and major commercial projects, including schools and resorts. His work ethic and attention to detail make him an invaluable leader on our commercial division.',
   },
   {
     name: 'Tommy Reiner',
     role: 'Residential Service Manager',
+    image: '/images/team-tommy.png',
     bio: 'With over 10 years of roofing and construction experience, Tommy specializes in homeowner service and honest recommendations. He takes pride in making sure every residential customer feels confident in the work being done on their home.',
     quote: 'What have you done for somebody else today?',
   },
   {
     name: 'Albert Hernandez',
     role: 'SR. Project Manager / Estimator',
+    image: '/images/team-albert.png',
     bio: 'Albert joined Vegas Born Roofing in 2020, bringing deep experience across multiple roofing systems. He coordinates with general contractors and crews to ensure projects are completed on time and to specification.',
   },
   {
     name: 'Luis Jr. Ordonez',
     role: 'Project Manager / Estimator',
+    image: '/images/team-luisjr.jpeg',
     bio: 'Starting in field installation, Luis Jr. developed his estimating and project management skills through hands-on experience. Known for his dependability and eagerness to learn, he continues to grow into a key member of our team.',
   },
   {
     name: 'Charlene Garrett',
     role: 'Accounting Controller',
+    image: '/images/team-charlene.png',
     bio: 'Charlene has been with the company since its inception. She manages accounts receivable and payable, payroll, and employee administration. Her organization and attention to detail keep our operations running seamlessly.',
   },
   {
     name: 'Sharon Uechi',
     role: 'Administrative Support Specialist',
+    image: '/images/team-sharon.png',
     bio: 'Sharon is the first point of contact for our customers. With a background in business, banking, travel, real estate, and insurance, she brings a wealth of professional experience to our front office operations.',
   },
   {
     name: 'Rich Friesz',
     role: 'Project Manager',
+    image: '/images/team-rich.jpg',
     bio: 'Rich joined the team in 2022, bringing over 20 years of construction industry experience. He works closely with property managers, contractors, and HOAs to deliver quality roofing solutions across the valley.',
   },
   {
     name: 'Arielle Serrano',
     role: 'Accounts Payable',
+    image: '/images/team-arielle.png',
     bio: 'Arielle supports day-to-day operations by handling customer calls, scheduling, billing, and AIA coordination. Her efficiency and attention to detail keep our administrative processes running smoothly.',
   },
 ];
@@ -70,6 +79,7 @@ const teamMembers = [
 const memorial = {
   name: 'Joey Williams',
   role: 'Founding Partner',
+  image: '/images/team-joey.png',
   bio: 'A lifelong Las Vegas resident and roofing industry professional, Joey was a founding partner of Vegas Born Roofing and a devoted family man. His legacy lives on in the values and work ethic he instilled in our team.',
 };
 
@@ -145,21 +155,27 @@ export default function MeetTheTeam() {
             {teamMembers.slice(1).map((member) => (
               <div
                 key={member.name}
-                className="bg-white rounded-xl p-8 shadow-sm hover:shadow-md transition-shadow border border-gray-100"
+                className="bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-shadow border border-gray-100"
               >
-                <div className="w-20 h-20 bg-[#111827] rounded-full flex items-center justify-center mb-5">
-                  <span className="text-2xl font-bold text-[#d4a843]">
-                    {member.name.split(' ').map((n) => n[0]).join('')}
-                  </span>
+                <div className="relative h-64 overflow-hidden">
+                  <Image
+                    src={member.image}
+                    alt={`${member.name} - ${member.role} at Vegas Born Roofing LLC`}
+                    fill
+                    className="object-cover object-top"
+                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                  />
                 </div>
-                <h3 className="text-xl font-bold text-gray-900 mb-1">{member.name}</h3>
-                <p className="text-[#b91c1c] font-medium text-sm mb-4">{member.role}</p>
-                {member.quote && (
-                  <blockquote className="border-l-4 border-[#d4a843] pl-3 italic text-gray-500 text-sm mb-4">
-                    &ldquo;{member.quote}&rdquo;
-                  </blockquote>
-                )}
-                <p className="text-gray-600 text-sm leading-relaxed">{member.bio}</p>
+                <div className="p-6">
+                  <h3 className="text-xl font-bold text-gray-900 mb-1">{member.name}</h3>
+                  <p className="text-[#b91c1c] font-medium text-sm mb-4">{member.role}</p>
+                  {member.quote && (
+                    <blockquote className="border-l-4 border-[#d4a843] pl-3 italic text-gray-500 text-sm mb-4">
+                      &ldquo;{member.quote}&rdquo;
+                    </blockquote>
+                  )}
+                  <p className="text-gray-600 text-sm leading-relaxed">{member.bio}</p>
+                </div>
               </div>
             ))}
           </div>
@@ -170,6 +186,15 @@ export default function MeetTheTeam() {
       <section className="py-16 bg-white">
         <div className="max-w-3xl mx-auto px-4 text-center">
           <div className="bg-gray-50 rounded-xl p-10 border border-gray-200">
+            <div className="relative w-32 h-32 rounded-full overflow-hidden mx-auto mb-6 border-4 border-gray-200">
+              <Image
+                src={memorial.image}
+                alt={`${memorial.name} - Founding Partner of Vegas Born Roofing LLC`}
+                fill
+                className="object-cover"
+                sizes="128px"
+              />
+            </div>
             <p className="text-sm uppercase tracking-wider text-gray-400 mb-3">In Loving Memory</p>
             <h3 className="text-2xl font-bold text-gray-900 mb-2">{memorial.name}</h3>
             <p className="text-[#b91c1c] font-medium mb-4">{memorial.role}</p>
