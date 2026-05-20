@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Geist } from "next/font/google";
+import Script from "next/script";
 import "./globals.css";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
@@ -125,11 +126,12 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
         <Header />
         <main className="flex-1">{children}</main>
         <Footer />
-        <script
+        <Script
+          id="ghl-chat-widget"
           src="https://widgets.leadconnectorhq.com/loader.js"
           data-resources-url="https://widgets.leadconnectorhq.com/chat-widget/loader.js"
           data-widget-id="6a0dc733e1a8663249bb724c"
-          async
+          strategy="afterInteractive"
         />
       </body>
     </html>
