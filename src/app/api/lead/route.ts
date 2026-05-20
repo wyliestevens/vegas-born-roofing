@@ -11,7 +11,7 @@ export async function POST(req: Request) {
       );
     }
 
-    const webhookUrl = process.env.RETELL_WEBHOOK_URL || 'https://services.leadconnectorhq.com/hooks/8G7oorGsCPDIlU76HPkb/webhook-trigger/b6c36035-51b7-4f92-b3ba-b9e01fcbe4c9';
+    const webhookUrl = process.env.RETELL_WEBHOOK_URL || 'https://services.leadconnectorhq.com/hooks/8G7oorGsCPDIlU76HPkb/webhook-trigger/adb4ce69-59d4-4d82-aca0-6f1989c9b9b0';
     await fetch(webhookUrl, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
