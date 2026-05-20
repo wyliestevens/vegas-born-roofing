@@ -157,12 +157,12 @@ export default function MeetTheTeam() {
                 key={member.name}
                 className="bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-shadow border border-gray-100"
               >
-                <div className="relative h-64 overflow-hidden">
+                <div className="relative h-80 overflow-hidden">
                   <Image
                     src={member.image}
                     alt={`${member.name} - ${member.role} at Vegas Born Roofing LLC`}
                     fill
-                    className="object-cover object-top"
+                    className="object-cover object-center"
                     sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                   />
                 </div>
