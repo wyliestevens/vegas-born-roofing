@@ -3,10 +3,14 @@
 ## Project Overview
 - **Client:** Vegas Born Roofing LLC (Rich Friesz)
 - **Type:** Website clone/rebuild — massively improved version of vegasbornroofing.com
-- **Stack:** Next.js 16, TypeScript, Tailwind CSS v4, NextAuth.js v4
+- **Stack:** Next.js 16, TypeScript, Tailwind CSS v4
 - **Repo:** https://github.com/wyliestevens/vegas-born-roofing
-- **Deployment:** Vercel (pending)
 - **Path:** /Users/wylie/Claude/vegas-born-roofing/
+
+## Deployment
+- **Vercel URL:** vegas-born-roofing.vercel.app
+- **Vercel Project ID:** prj_hWR5I1kn65mM3EACpOW6AZsfo8Oy
+- **Auto-deploys:** Connected to GitHub, deploys on push to main
 
 ## Business Details
 - **Company:** Vegas Born Roofing LLC
@@ -25,18 +29,49 @@
 5. **Contact** — Contact info cards, form, Google Maps embed, service areas, license info
 6. **Employment** — Job application form with position selector, experience level, resume upload
 
-## Admin System (/admin)
-- **Login:** /admin/login
-- **Users:**
-  - rich@vegasbornroofing.com (Password — must change on first login)
-  - wylie@aipeakbiz.com (Password — must change on first login)
-- **Features:**
-  - Dashboard with admin tools and quick stats
-  - AI Content Builder (Claude Sonnet) for generating page content
-  - Forced password change on first login
-  - JWT-based session management
-- **Auth:** NextAuth.js v4 with credentials provider, bcryptjs password hashing
-- **User data:** data/users.json (NOTE: won't persist on Vercel's read-only filesystem — needs migration to Vercel KV for production)
+## Admin System (/admin) — REBUILT 2026-05-27
+Complete admin dashboard based on Lee Clark reference implementation. Custom JWT auth (no NextAuth).
+
+### Auth
+- **Cookie:** `vbr_admin` (JWT, 7-day expiry)
+- **Auth lib:** `src/lib/auth.ts` (jose JWT, bcryptjs passwords, GitHub-backed credentials)
+- **Middleware:** `src/middleware.ts` (protects /admin/* and /api/admin/*, enforces password change)
+- **Credentials:** `data/admin/credentials.json` (stored in GitHub via API)
+
+### Admin Users
+- `wylie@aipeakbiz.com` — Wylie Stevens — super_admin — no forced password change
+- `rich@vegasbornroofing.com` — Rich Friesz — owner — must change password
+- `jodd@vegasbornroofing.com` — Jodd Friesz — owner — must change password
+- Default password for all: "Password"
+
+### Admin Pages (20 routes)
+- **Dashboard** — Content stats, quick actions
+- **AI Chat** — Claude Sonnet with tool loop for content management
+- **Blog** — List, create, edit posts (draft/published)
+- **Team** — Manage team members
+- **Testimonials** — List, create with ratings/source/featured
+- **Projects** — Roofing project portfolio
+- **Services** — Roofing services management
+- **Site Settings** — Phone, email, address, licenses, social links
+- **Media Library** — Drag-drop upload, grid display, copy URL, delete
+- **Users** — Add/remove admin users (owners and super_admin only)
+- **History** — Git commit history with restore capability
+- **Deployments** — Vercel deployment status, redeploy, rollback
+- **Account** — View account info, change password
+- **Login** — Email/password login
+- **Change Password** — Forced on first login
+
+### Content Storage
+All content stored as JSON in `data/content/` directory, managed via GitHub API:
+- `blog-posts.json`, `testimonials.json`, `projects.json`
+- `team.json`, `services.json`, `site-settings.json`
+
+### API Routes (14 endpoints)
+- `/api/admin/login`, `/api/admin/logout`, `/api/admin/account`
+- `/api/admin/blog`, `/api/admin/testimonials`, `/api/admin/projects`
+- `/api/admin/team`, `/api/admin/services`, `/api/admin/site-settings`
+- `/api/admin/images`, `/api/admin/upload`
+- `/api/admin/users`, `/api/admin/history`, `/api/admin/deployments`
 
 ## SEO & AI Search Optimization
 - **Schema markup:** RoofingContractor (LocalBusiness), Service ItemList, FAQPage, JobPosting, Person
@@ -44,34 +79,24 @@
 - **Sitemap:** Auto-generated at /sitemap.xml
 - **Robots:** /robots.txt blocks /admin/ and /api/
 - **AEO:** FAQ section with 8 conversational Q&As for AI search engine citations
-- **Image alt text:** Descriptive, keyword-rich alt text on all images
 
 ## Environment Variables (.env)
-- `ANTHROPIC_API_KEY` — Claude API key for AI builder (Sonnet)
-- `NEXTAUTH_SECRET` — JWT signing secret
-- `NEXTAUTH_URL` — Base URL (http://localhost:3000 for dev)
+- `ANTHROPIC_API_KEY` — Claude API key for AI Chat
+- `ADMIN_JWT_SECRET` — JWT signing secret for admin auth
+- `GITHUB_TOKEN` — GitHub personal access token for content management
+- `GITHUB_OWNER` — GitHub repo owner (wyliestevens)
+- `GITHUB_REPO` — GitHub repo name (vegas-born-roofing)
+- `VERCEL_TOKEN` — Vercel API token (for deployments page)
+- `VERCEL_PROJECT_ID` — Vercel project ID (for deployments page)
 
-## All Images (from original site)
-- logo.png, hero-bg.png, commercial-roofing.jpg, sheet-metal.jpeg
-- residential.jpg, tile-property.jpg, team-jodd.png
-- metal-3.jpeg, metal-4.jpeg, metal-5.jpeg, metal-6.jpeg
-- roof-coating-1.jpeg, roof-coating-2.jpeg
-
-## What Was Done (2026-05-20)
-- Scraped entire vegasbornroofing.com site (all 7 pages)
-- Downloaded all 13 images from original site
-- Built complete Next.js 16 site with 6 public pages
-- Eliminated Reviews page — moved to scrolling reviews carousel on homepage
-- Added comprehensive SEO: 5 schema types, FAQ for AEO, sitemap, robots.txt
-- Built admin dashboard with NextAuth login, forced password change, AI content builder
-- Created two admin users with "Password" as default (must change on first login)
-- Created .env file for Anthropic API key
-- Pushed to GitHub: wyliestevens/vegas-born-roofing
+## GHL Integration
+- Chat widget loaded via next/script in layout
+- Hero section AI callback lead form
+- Lead form posts to GHL webhook (E.164 phone format)
 
 ## What's Next
-- Deploy to Vercel
-- Set environment variables in Vercel (ANTHROPIC_API_KEY, NEXTAUTH_SECRET, NEXTAUTH_URL)
-- Migrate user data from JSON file to Vercel KV for persistence
+- Set GITHUB_TOKEN in Vercel env vars for content management to work in production
+- Set ANTHROPIC_API_KEY in Vercel for AI Chat
 - Connect custom domain if needed
 - Add Google Analytics / Tag Manager
-- Consider adding Vercel Blob for image management in admin
+- Optionally set VERCEL_TOKEN for deployments page
