@@ -1,1 +1,112 @@
-[]
+[
+  {
+    "id": "jodd-friesz",
+    "name": "Jodd Friesz",
+    "title": "Owner / Operator",
+    "photo": "/images/team-jodd.png",
+    "bio": ["Originally from Flasher, North Dakota, Jodd served 6 years in the Army and Reserves before starting his roofing career at Dean Roofing in 1995 as an installation laborer. He advanced to estimator and project manager, then moved into commercial roofing. He co-founded Vegas Born Roofing in 2018 and is now the sole owner. Jodd emphasizes communication, teamwork, and accountability on every project."],
+    "order": 1,
+    "createdAt": "2026-05-27T00:00:00Z",
+    "updatedAt": "2026-05-27T00:00:00Z"
+  },
+  {
+    "id": "hector-santiago",
+    "name": "Hector Santiago",
+    "title": "Estimator / Project Manager",
+    "photo": "/images/team-hector.png",
+    "bio": ["With over 20 years of roofing experience, Hector manages customer relationships, crew coordination, and project oversight. Known for his positive attitude and strong work ethic, he ensures every project runs smoothly from start to finish."],
+    "order": 2,
+    "createdAt": "2026-05-27T00:00:00Z",
+    "updatedAt": "2026-05-27T00:00:00Z"
+  },
+  {
+    "id": "luis-ordonez",
+    "name": "Luis Ordonez",
+    "title": "Commercial Superintendent",
+    "photo": "/images/team-luis.png",
+    "bio": ["Luis began his roofing career in 1999 and has built extensive experience across residential and major commercial projects, including schools and resorts. His work ethic and attention to detail make him an invaluable leader on our commercial division."],
+    "order": 3,
+    "createdAt": "2026-05-27T00:00:00Z",
+    "updatedAt": "2026-05-27T00:00:00Z"
+  },
+  {
+    "id": "tommy-reiner",
+    "name": "Tommy Reiner",
+    "title": "Residential Service Manager",
+    "photo": "/images/team-tommy.png",
+    "bio": ["With over 10 years of roofing and construction experience, Tommy specializes in homeowner service and honest recommendations. He takes pride in making sure every residential customer feels confident in the work being done on their home."],
+    "order": 4,
+    "createdAt": "2026-05-27T00:00:00Z",
+    "updatedAt": "2026-05-27T00:00:00Z"
+  },
+  {
+    "id": "albert-hernandez",
+    "name": "Albert Hernandez",
+    "title": "SR. Project Manager / Estimator",
+    "photo": "/images/team-albert.png",
+    "bio": ["Albert joined Vegas Born Roofing in 2020, bringing deep experience across multiple roofing systems. He coordinates with general contractors and crews to ensure projects are completed on time and to specification."],
+    "order": 5,
+    "createdAt": "2026-05-27T00:00:00Z",
+    "updatedAt": "2026-05-27T00:00:00Z"
+  },
+  {
+    "id": "luis-jr-ordonez",
+    "name": "Luis Jr. Ordonez",
+    "title": "Project Manager / Estimator",
+    "photo": "/images/team-luisjr.jpeg",
+    "bio": ["Starting in field installation, Luis Jr. developed his estimating and project management skills through hands-on experience. Known for his dependability and eagerness to learn, he continues to grow into a key member of our team."],
+    "order": 6,
+    "createdAt": "2026-05-27T00:00:00Z",
+    "updatedAt": "2026-05-27T00:00:00Z"
+  },
+  {
+    "id": "charlene-garrett",
+    "name": "Charlene Garrett",
+    "title": "Accounting Controller",
+    "photo": "/images/team-charlene.png",
+    "bio": ["Charlene has been with the company since its inception. She manages accounts receivable and payable, payroll, and employee administration. Her organization and attention to detail keep our operations running seamlessly."],
+    "order": 7,
+    "createdAt": "2026-05-27T00:00:00Z",
+    "updatedAt": "2026-05-27T00:00:00Z"
+  },
+  {
+    "id": "sharon-uechi",
+    "name": "Sharon Uechi",
+    "title": "Administrative Support Specialist",
+    "photo": "/images/team-sharon.png",
+    "bio": ["Sharon is the first point of contact for our customers. With a background in business, banking, travel, real estate, and insurance, she brings a wealth of professional experience to our front office operations."],
+    "order": 8,
+    "createdAt": "2026-05-27T00:00:00Z",
+    "updatedAt": "2026-05-27T00:00:00Z"
+  },
+  {
+    "id": "rich-friesz",
+    "name": "Rich Friesz",
+    "title": "Project Manager",
+    "photo": "/images/team-rich.jpg",
+    "bio": ["Rich joined the team in 2022, bringing over 20 years of construction industry experience. He works closely with property managers, contractors, and HOAs to deliver quality roofing solutions across the valley."],
+    "order": 9,
+    "createdAt": "2026-05-27T00:00:00Z",
+    "updatedAt": "2026-05-27T00:00:00Z"
+  },
+  {
+    "id": "arielle-serrano",
+    "name": "Arielle Serrano",
+    "title": "Accounts Payable",
+    "photo": "/images/team-arielle.png",
+    "bio": ["Arielle supports day-to-day operations by handling customer calls, scheduling, billing, and AIA coordination. Her efficiency and attention to detail keep our administrative processes running smoothly."],
+    "order": 10,
+    "createdAt": "2026-05-27T00:00:00Z",
+    "updatedAt": "2026-05-27T00:00:00Z"
+  },
+  {
+    "id": "joey-williams",
+    "name": "Joey Williams",
+    "title": "Founding Partner (In Memoriam)",
+    "photo": "/images/team-joey.png",
+    "bio": ["A lifelong Las Vegas resident and roofing industry professional, Joey was a founding partner of Vegas Born Roofing and a devoted family man. His legacy lives on in the values and work ethic he instilled in our team."],
+    "order": 11,
+    "createdAt": "2026-05-27T00:00:00Z",
+    "updatedAt": "2026-05-27T00:00:00Z"
+  }
+]
