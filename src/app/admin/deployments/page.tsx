@@ -173,7 +173,7 @@ export default function DeploymentsPage() {
       ) : (
         <div className="bg-white border border-slate-200 rounded-xl overflow-hidden">
           <div className="divide-y divide-slate-200">
-            {deployments.map((dep) => (
+            {deployments.map((dep, index) => (
               <div
                 key={dep.id}
                 className="flex items-center gap-4 px-5 py-4 hover:bg-slate-50"
@@ -184,9 +184,9 @@ export default function DeploymentsPage() {
                     <p className="text-sm font-medium text-slate-900 truncate">
                       {dep.commitMessage || "No commit message"}
                     </p>
-                    {dep.target === "production" && (
-                      <span className="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-red-100 text-red-700">
-                        Production
+                    {index === 0 && dep.state === "READY" && (
+                      <span className="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-green-100 text-green-700">
+                        Current
                       </span>
                     )}
                   </div>
@@ -211,7 +211,7 @@ export default function DeploymentsPage() {
                     </span>
                   </div>
                 </div>
-                {dep.state === "READY" && dep.target !== "production" && (
+                {dep.state === "READY" && index > 0 && (
                   <button
                     onClick={() => handlePromote(dep.id)}
                     disabled={actionLoading === dep.id}
@@ -222,7 +222,7 @@ export default function DeploymentsPage() {
                     ) : (
                       <RotateCcw className="h-3.5 w-3.5" />
                     )}
-                    Promote
+                    Rollback
                   </button>
                 )}
               </div>
