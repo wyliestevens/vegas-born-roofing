@@ -6,7 +6,8 @@ import { useRouter, useSearchParams } from "next/navigation";
 export function LoginForm() {
   const router = useRouter();
   const searchParams = useSearchParams();
-  const next = searchParams?.get("next") || "/admin";
+  const rawNext = searchParams?.get("next");
+  const next = rawNext ? decodeURIComponent(rawNext) : "/admin";
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -34,9 +35,9 @@ export function LoginForm() {
       }
 
       if (data.mustChangePassword) {
-        router.push("/admin/change-password");
+        window.location.href = "/admin/change-password";
       } else {
-        router.push(next);
+        window.location.href = next;
       }
     } catch {
       setError("Something went wrong. Please try again.");
