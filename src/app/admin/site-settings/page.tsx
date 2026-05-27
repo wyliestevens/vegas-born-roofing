@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { Save, Loader2 } from "lucide-react";
+import { Save, Loader2, Plus, Trash2 } from "lucide-react";
 
 interface SiteSettings {
   phone: string;
@@ -14,12 +14,7 @@ interface SiteSettings {
     utah: string;
     arizona: string;
   };
-  socialLinks: {
-    facebook: string;
-    instagram: string;
-    yelp: string;
-    google: string;
-  };
+  socialLinks: Record<string, string>;
 }
 
 const defaultSettings: SiteSettings = {
@@ -29,7 +24,7 @@ const defaultSettings: SiteSettings = {
   tagline: "",
   hours: "",
   licenses: { nevada: "", utah: "", arizona: "" },
-  socialLinks: { facebook: "", instagram: "", yelp: "", google: "" },
+  socialLinks: { facebook: "", instagram: "", yelp: "", google: "" } as Record<string, string>,
 };
 
 export default function SiteSettingsPage() {
@@ -96,11 +91,37 @@ export default function SiteSettingsPage() {
     });
   }
 
-  function updateSocial(key: "facebook" | "instagram" | "yelp" | "google", value: string) {
+  function updateSocial(key: string, value: string) {
     setSettings({
       ...settings,
       socialLinks: { ...settings.socialLinks, [key]: value },
     });
+  }
+
+  function addSocialLink() {
+    const name = prompt("Enter the platform name (e.g. TikTok, LinkedIn, Twitter):");
+    if (!name?.trim()) return;
+    const key = name.trim().toLowerCase().replace(/\s+/g, "_");
+    if (settings.socialLinks[key] !== undefined) {
+      alert("That platform already exists.");
+      return;
+    }
+    setSettings({
+      ...settings,
+      socialLinks: { ...settings.socialLinks, [key]: "" },
+    });
+  }
+
+  function removeSocialLink(key: string) {
+    const updated = { ...settings.socialLinks };
+    delete updated[key];
+    setSettings({ ...settings, socialLinks: updated });
+  }
+
+  function formatLabel(key: string): string {
+    return key
+      .replace(/_/g, " ")
+      .replace(/\b\w/g, (c) => c.toUpperCase());
   }
 
   if (loading) {
@@ -262,59 +283,50 @@ export default function SiteSettingsPage() {
 
         {/* Social Links */}
         <div className="bg-white rounded-lg border border-slate-200 p-6">
-          <h3 className="text-base font-semibold text-slate-900 mb-4">
-            Social Media Links
-          </h3>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <div>
-              <label className="block text-sm font-medium text-slate-700 mb-1">
-                Facebook
-              </label>
-              <input
-                type="url"
-                value={settings.socialLinks.facebook}
-                onChange={(e) => updateSocial("facebook", e.target.value)}
-                className="w-full px-3 py-2 border border-slate-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-red-500"
-                placeholder="https://facebook.com/vegasbornroofing"
-              />
-            </div>
-            <div>
-              <label className="block text-sm font-medium text-slate-700 mb-1">
-                Instagram
-              </label>
-              <input
-                type="url"
-                value={settings.socialLinks.instagram}
-                onChange={(e) => updateSocial("instagram", e.target.value)}
-                className="w-full px-3 py-2 border border-slate-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-red-500"
-                placeholder="https://instagram.com/vegasbornroofing"
-              />
-            </div>
-            <div>
-              <label className="block text-sm font-medium text-slate-700 mb-1">
-                Yelp
-              </label>
-              <input
-                type="url"
-                value={settings.socialLinks.yelp}
-                onChange={(e) => updateSocial("yelp", e.target.value)}
-                className="w-full px-3 py-2 border border-slate-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-red-500"
-                placeholder="https://yelp.com/biz/vegas-born-roofing"
-              />
-            </div>
-            <div>
-              <label className="block text-sm font-medium text-slate-700 mb-1">
-                Google Business
-              </label>
-              <input
-                type="url"
-                value={settings.socialLinks.google}
-                onChange={(e) => updateSocial("google", e.target.value)}
-                className="w-full px-3 py-2 border border-slate-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-red-500"
-                placeholder="https://g.page/vegas-born-roofing"
-              />
-            </div>
+          <div className="flex items-center justify-between mb-4">
+            <h3 className="text-base font-semibold text-slate-900">
+              Social Media Links
+            </h3>
+            <button
+              type="button"
+              onClick={addSocialLink}
+              className="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium text-red-600 bg-red-50 rounded-lg hover:bg-red-100 transition-colors"
+            >
+              <Plus className="h-3.5 w-3.5" />
+              Add Platform
+            </button>
           </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            {Object.entries(settings.socialLinks).map(([key, value]) => (
+              <div key={key} className="relative">
+                <label className="block text-sm font-medium text-slate-700 mb-1">
+                  {formatLabel(key)}
+                </label>
+                <div className="flex gap-2">
+                  <input
+                    type="url"
+                    value={value}
+                    onChange={(e) => updateSocial(key, e.target.value)}
+                    className="flex-1 px-3 py-2 border border-slate-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-red-500"
+                    placeholder={`https://${key}.com/vegasbornroofing`}
+                  />
+                  <button
+                    type="button"
+                    onClick={() => removeSocialLink(key)}
+                    className="p-2 text-slate-400 hover:text-red-600 rounded-lg hover:bg-red-50 transition-colors"
+                    title={`Remove ${formatLabel(key)}`}
+                  >
+                    <Trash2 className="h-4 w-4" />
+                  </button>
+                </div>
+              </div>
+            ))}
+          </div>
+          {Object.keys(settings.socialLinks).length === 0 && (
+            <p className="text-sm text-slate-400 text-center py-4">
+              No social media links added yet. Click &quot;Add Platform&quot; to get started.
+            </p>
+          )}
         </div>
       </div>
 
