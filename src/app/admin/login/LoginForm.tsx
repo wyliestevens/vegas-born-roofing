@@ -6,8 +6,7 @@ import { useRouter, useSearchParams } from "next/navigation";
 export function LoginForm() {
   const router = useRouter();
   const searchParams = useSearchParams();
-  const rawNext = searchParams?.get("next");
-  const next = rawNext ? decodeURIComponent(rawNext) : "/admin";
+  const next = searchParams?.get("next") || "/admin";
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
