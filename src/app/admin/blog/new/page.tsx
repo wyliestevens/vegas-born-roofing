@@ -145,7 +145,7 @@ BODY:
       const categoriesMatch = content.match(/CATEGORIES:\s*(.+)/);
       const bodyMatch = content.match(/BODY:\s*\n([\s\S]+)/);
 
-      setAiResult({
+      const result = {
         title: titleMatch?.[1]?.trim(),
         excerpt: excerptMatch?.[1]?.trim(),
         body: bodyMatch?.[1]?.trim(),
@@ -153,7 +153,29 @@ BODY:
           ?.split(",")
           .map((c: string) => c.trim())
           .filter(Boolean),
-      });
+      };
+
+      setAiResult(result);
+
+      // Auto-fill form fields
+      if (result.title) handleTitleChange(result.title);
+      if (result.excerpt) setExcerpt(result.excerpt);
+      if (result.body) setBody(result.body);
+      if (result.categories) setCategories(result.categories);
+
+      // Auto-fetch a relevant featured image
+      try {
+        const query = encodeURIComponent(aiPrompt.trim().split(" ").slice(0, 4).join(" ") + " roofing");
+        const imgRes = await fetch(`/api/admin/stock-image?q=${query}`);
+        if (imgRes.ok) {
+          const imgData = await imgRes.json();
+          if (imgData.url) {
+            setFeaturedImage(imgData.url);
+          }
+        }
+      } catch {
+        // Image fetch is optional, don't block on failure
+      }
     } catch {
       setAiError("Failed to generate content. Make sure the Anthropic API key is configured.");
     } finally {
