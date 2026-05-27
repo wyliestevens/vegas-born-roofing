@@ -12,7 +12,6 @@ import {
   Wrench,
   Settings,
   Image,
-  History,
   Rocket,
   UserCircle,
   LogOut,
@@ -31,7 +30,6 @@ const navItems = [
   { label: "Site Settings", href: "/admin/site-settings", icon: Settings },
   { label: "Media Library", href: "/admin/images", icon: Image },
   { label: "Users", href: "/admin/users", icon: UserCog },
-  { label: "History", href: "/admin/history", icon: History },
   { label: "Deployments", href: "/admin/deployments", icon: Rocket },
 ];
 
