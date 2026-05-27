@@ -1,5 +1,5 @@
 import { Suspense } from "react";
-import { HardHat } from "lucide-react";
+import Image from "next/image";
 import { LoginForm } from "./LoginForm";
 
 export const metadata = {
@@ -13,9 +13,13 @@ export default function AdminLoginPage() {
       <div className="w-full max-w-md">
         {/* Branding */}
         <div className="text-center mb-8">
-          <div className="inline-flex items-center justify-center w-14 h-14 rounded-full bg-slate-800 mb-4">
-            <HardHat className="h-7 w-7 text-red-500" />
-          </div>
+          <Image
+            src="/images/logo.png"
+            alt="Vegas Born Roofing"
+            width={80}
+            height={93}
+            className="mx-auto mb-4"
+          />
           <h1 className="text-2xl font-bold text-white">Vegas Born Roofing</h1>
           <p className="text-slate-400 text-sm mt-1">
             Admin Dashboard

@@ -2,7 +2,7 @@
 
 import { useState, FormEvent } from "react";
 import { useRouter } from "next/navigation";
-import { HardHat } from "lucide-react";
+import Image from "next/image";
 
 export default function ChangePasswordPage() {
   const router = useRouter();
@@ -54,9 +54,13 @@ export default function ChangePasswordPage() {
     <div className="min-h-screen bg-slate-50 flex items-center justify-center px-4">
       <div className="w-full max-w-md">
         <div className="text-center mb-8">
-          <div className="inline-flex items-center justify-center w-14 h-14 rounded-full bg-slate-800 mb-4">
-            <HardHat className="h-7 w-7 text-red-500" />
-          </div>
+          <Image
+            src="/images/logo.png"
+            alt="Vegas Born Roofing"
+            width={70}
+            height={81}
+            className="mx-auto mb-2"
+          />
           <h1 className="text-2xl font-bold text-slate-900">Change Password</h1>
           <p className="text-slate-500 text-sm mt-1">
             Please set a new password for your account.

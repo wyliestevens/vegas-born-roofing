@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import NextImage from "next/image";
 import { usePathname, useRouter } from "next/navigation";
 import {
   LayoutDashboard,
@@ -15,7 +16,6 @@ import {
   Rocket,
   UserCircle,
   LogOut,
-  HardHat,
   UserCog,
 } from "lucide-react";
 
@@ -54,11 +54,17 @@ export function AdminSidebar() {
   return (
     <aside className="fixed inset-y-0 left-0 z-40 w-64 bg-slate-900 flex flex-col">
       {/* Branding */}
-      <div className="px-5 py-5 border-b border-slate-800">
-        <Link href="/admin" className="flex items-center gap-2.5">
-          <HardHat className="h-6 w-6 text-red-500" />
-          <span className="text-lg font-semibold text-white tracking-tight">
-            Vegas Born Roofing
+      <div className="px-5 py-4 border-b border-slate-800">
+        <Link href="/" className="flex items-center gap-3">
+          <NextImage
+            src="/images/logo.png"
+            alt="Vegas Born Roofing"
+            width={40}
+            height={46}
+            className="shrink-0"
+          />
+          <span className="text-base font-semibold text-white tracking-tight leading-tight">
+            Vegas Born<br />Roofing
           </span>
         </Link>
       </div>
